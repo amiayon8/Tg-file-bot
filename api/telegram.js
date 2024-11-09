@@ -15,9 +15,9 @@ bot.getMe().then((botInfo) => {
 
   // Now that we have the bot's information, listen for the "/start" command
   bot.onText(/\/start/, (msg) => {
-    bot.sendChatAction(chatId, 'typing');
+    const chatId = msg.chat.id;  // Declare chatId here
+    bot.sendChatAction(chatId, 'typing');  // Send typing action
 
-    const chatId = msg.chat.id;
     const userName = msg.from.username || "there";  // Fallback if the user doesn't have a username
 
     const welcomeMessage = `
@@ -37,19 +37,18 @@ bot.getMe().then((botInfo) => {
     bot.sendMessage(chatId, welcomeMessage);
   });
 
-  // Listen for commands (e.g., /help)
+  // Listen for the /help command
   bot.onText(/\/help/, (msg) => {
-    bot.sendChatAction(chatId, 'typing');
-
-    const chatId = msg.chat.id;
+    const chatId = msg.chat.id;  // Declare chatId here
+    bot.sendChatAction(chatId, 'typing');  // Send typing action
     bot.sendMessage(chatId, 'How can I assist you?');
   });
 
   // Listen for any incoming message
   bot.on('message', (msg) => {
-    bot.sendChatAction(chatId, 'typing');
-
-    const chatId = msg.chat.id;
+    const chatId = msg.chat.id;  // Declare chatId here
+    bot.sendChatAction(chatId, 'typing');  // Send typing action
+    
     if (!msg.text) {
       // Convert the message object to a string and send it back
       const messageDetails = JSON.stringify(msg, null, 2); // Pretty print with 2 spaces
