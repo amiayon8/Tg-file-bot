@@ -7,7 +7,25 @@ const bot = new TelegramBot(token, { polling: true });
 // Listen for "/start" command
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  bot.sendMessage(chatId, 'Welcome! I am your bot.');
+  const userName = msg.from.username || "there";  // Fallback if the user doesn't have a username
+
+  const welcomeMessage = `
+ʜᴇʟᴌᴏ @${userName},
+
+ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ BOT NAME. ɪ'ᴍ ʜᴇʀᴇ ᴛᴏ ʜᴇʟᴩ yᴏᴜ ꜱʜᴀʀᴇ ꜰɪʟᴇꜱ ꜱᴇᴀᴍʟᴇꜱꜱʟʏ ᴀɴᴅ ꜱᴇᶜᴜʀᴇʟʏ. ʟᴇᴛ'ꜱ ɢᴇᴛ ꜱᴛᴀʀᴛᴇᴅ—ᴊᴜꜱᴛ ꜱᴇɴᴅ yᴏᴜʀ ꜰɪʟᴇꜱ, ᴀɴᴅ ɪ'ʟʟ ᴛᴀᴋᴇ ᴄᴀʀᴇ ᴏꜰ ᴛʜᴇ ʀᴇꜱᴛ!
+
+ᴄᴏᴍᴍᴀɴᴅꜱ
+/start - ꜱᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ
+/view - ᴠɪᴇᴡ ᴀɴ ᴜᴩʟᴏᴀᴅᴇᴅ ꜰɪʟᴇ
+/create - ᴀᴅᴅ ᴀ ɴᴇᴡ ꜰɪʟᴇ
+/list - ʟɪꜱᴛ yᴏᴜʀ ᴄʀᴇᴀᴛᴇᴅ ꜰɪʟᴇꜱ
+/delete - ᴅᴇʟᴇᴛᴇ ᴀ ᴄʀᴇᴀᴛᴇᴅ ꜰɪʟᴇ
+/help - ꜰᴏʀ ʜᴇʟᴩ ᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ʙᴏᴛ
+/about - ᴀʙᴏᴜᴛ ᴛʜɪꜱ ʙᴏᴛ
+`;
+
+  bot.sendMessage(chatId, welcomeMessage);
+
 });
 
 // Listen for commands (e.g., /help)
