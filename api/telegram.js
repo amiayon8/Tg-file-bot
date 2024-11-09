@@ -19,11 +19,13 @@ bot.onText(/\/help/, (msg) => {
 // Listen for any incoming message
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
-
+ if(!msg.text){
   // Convert the message object to a string and send it back
   const messageDetails = JSON.stringify(msg, null, 2); // Pretty print with 2 spaces
   bot.sendMessage(chatId, `Here are the full message details:\n\n${messageDetails}`);
-});
+ }
+ 
+ });
 
 // Handle unexpected errors
 bot.on('polling_error', (error) => {
