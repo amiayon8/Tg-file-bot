@@ -1,0 +1,7 @@
+name = "telegram-bot"
+type = "javascript"
+account_id = "351a0cf9ec7ca08a416382cf65eb693c" # Replace with your actual account ID
+workers_dev = true
+
+[vars]
+TELEGRAM_BOT_TOKEN = "7423254471:AAGGQfpP3yKi2xYfbKZNggxtFeFWykqKZ3E"
