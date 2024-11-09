@@ -5,13 +5,8 @@ const token = '7423254471:AAGGQfpP3yKi2xYfbKZNggxtFeFWykqKZ3E';
 const bot = new TelegramBot(token, { polling: true });
 
 // Store bot information
-let botName = '';
-let botUsername = '';
-
-// Fetch bot information and store it
-bot.getMe().then((botInfo) => {
-  botName = botInfo.first_name;
-  botUsername = botInfo.username;
+let botName = 'FloxShare';
+let botUsername = '@FloxSharebot';
 
   // Now that we have the bot's information, listen for the "/start" command
   bot.onText(/\/start/, (msg) => {
