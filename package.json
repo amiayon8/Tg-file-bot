@@ -1,0 +1,11 @@
+{
+  "name": "vercel-telegram-bot",
+  "version": "1.0.0",
+  "main": "api/telegram.js",
+  "scripts": {
+    "start": "node api/telegram.js"
+  },
+  "dependencies": {
+    "node-telegram-bot-api": "^0.55.0"
+  }
+}
