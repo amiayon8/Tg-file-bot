@@ -15,6 +15,8 @@ bot.getMe().then((botInfo) => {
 
   // Now that we have the bot's information, listen for the "/start" command
   bot.onText(/\/start/, (msg) => {
+    bot.sendChatAction(chatId, 'typing');
+
     const chatId = msg.chat.id;
     const userName = msg.from.username || "there";  // Fallback if the user doesn't have a username
 
@@ -37,12 +39,16 @@ bot.getMe().then((botInfo) => {
 
   // Listen for commands (e.g., /help)
   bot.onText(/\/help/, (msg) => {
+    bot.sendChatAction(chatId, 'typing');
+
     const chatId = msg.chat.id;
     bot.sendMessage(chatId, 'How can I assist you?');
   });
 
   // Listen for any incoming message
   bot.on('message', (msg) => {
+    bot.sendChatAction(chatId, 'typing');
+
     const chatId = msg.chat.id;
     if (!msg.text) {
       // Convert the message object to a string and send it back
