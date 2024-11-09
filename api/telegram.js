@@ -12,16 +12,15 @@ let botUsername = '';
 bot.getMe().then((botInfo) => {
   botName = botInfo.first_name;
   botUsername = botInfo.username;
-});
 
-// Listen for "/start" command
-bot.onText(/\/start/, (msg) => {
-  const chatId = msg.chat.id;
-  const userName = msg.from.username || "there";  // Fallback if the user doesn't have a username
+  // Now that we have the bot's information, listen for the "/start" command
+  bot.onText(/\/start/, (msg) => {
+    const chatId = msg.chat.id;
+    const userName = msg.from.username || "there";  // Fallback if the user doesn't have a username
 
-  const welcomeMessage = `
-ʜᴇʟᴌᴏ @${userName},
-ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ${botName}. ɪ'ᴍ ʜᴇʀᴇ ᴛᴏ ʜᴇʟᴩ yᴏᴜ ꜱʜᴀʀᴇ ꜰɪʟᴇꜱ ꜱᴇᴀᴍʟᴇꜱꜱʟʏ ᴀɴᴅ ꜱᴇᶜᴜʀᴇʟʏ. ʟᴇᴛ'ꜱ ɢᴇᴛ ꜱᴛᴀʀᴛᴇᴅ—ᴊᴜꜱᴛ ꜱᴇɴᴅ yᴏᴜʀ ꜰɪʟᴇꜱ, ᴀɴᴅ ɪ'ʟʟ ᴛᴀᴋᴇ ᴄᴀʀᴇ ᴏꜰ ᴛʜᴇ ʀᴇꜱᴛ!
+    const welcomeMessage = `
+ʜᴇʟʟᴏ @${userName},
+ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ${botName}. ɪ'ᴍ ʜᴇʀᴇ ᴛᴏ ʜᴇʟᴩ yᴏᴜ ꜱʜᴀʀᴇ ꜰɪʟᴇꜱ ꜱᴇᴀᴍʟᴇꜱꜱʟʏ ᴀɴᴅ ꜱᴇᴄᴜʀᴇʟʏ. ʟᴇᴛ'ꜱ ɢᴇᴛ ꜱᴛᴀʀᴛᴇᴅ—ᴊᴜꜱᴛ ꜱᴇɴᴅ yᴏᴜʀ ꜰɪʟᴇꜱ, ᴀɴᴅ ɪ'ʟʟ ᴛᴀᴋᴇ ᴄᴀʀᴇ ᴏꜰ ᴛʜᴇ ʀᴇꜱᴛ!
 
 ᴄᴏᴍᴍᴀɴᴅꜱ
 /start - ꜱᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ
@@ -33,26 +32,26 @@ bot.onText(/\/start/, (msg) => {
 /about - ᴀʙᴏᴜᴛ ᴛʜɪꜱ ʙᴏᴛ
 `;
 
-  bot.sendMessage(chatId, welcomeMessage);
+    bot.sendMessage(chatId, welcomeMessage);
+  });
+
+  // Listen for commands (e.g., /help)
+  bot.onText(/\/help/, (msg) => {
+    const chatId = msg.chat.id;
+    bot.sendMessage(chatId, 'How can I assist you?');
+  });
+
+  // Listen for any incoming message
+  bot.on('message', (msg) => {
+    const chatId = msg.chat.id;
+    if (!msg.text) {
+      // Convert the message object to a string and send it back
+      const messageDetails = JSON.stringify(msg, null, 2); // Pretty print with 2 spaces
+      bot.sendMessage(chatId, `Here are the full message details:\n\n${messageDetails}`);
+    }
+  });
 
 });
-
-// Listen for commands (e.g., /help)
-bot.onText(/\/help/, (msg) => {
-  const chatId = msg.chat.id;
-  bot.sendMessage(chatId, 'How can I assist you?');
-});
-
-// Listen for any incoming message
-bot.on('message', (msg) => {
-  const chatId = msg.chat.id;
- if(!msg.text){
-  // Convert the message object to a string and send it back
-  const messageDetails = JSON.stringify(msg, null, 2); // Pretty print with 2 spaces
-  bot.sendMessage(chatId, `Here are the full message details:\n\n${messageDetails}`);
- }
- 
- });
 
 // Handle unexpected errors
 bot.on('polling_error', (error) => {
