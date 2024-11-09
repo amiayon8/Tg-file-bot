@@ -4,6 +4,16 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = '7423254471:AAGGQfpP3yKi2xYfbKZNggxtFeFWykqKZ3E';
 const bot = new TelegramBot(token, { polling: true });
 
+// Store bot information
+let botName = '';
+let botUsername = '';
+
+// Fetch bot information and store it
+bot.getMe().then((botInfo) => {
+  botName = botInfo.first_name;
+  botUsername = botInfo.username;
+});
+
 // Listen for "/start" command
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
@@ -11,8 +21,7 @@ bot.onText(/\/start/, (msg) => {
 
   const welcomeMessage = `
 ʜᴇʟᴌᴏ @${userName},
-
-ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ BOT NAME. ɪ'ᴍ ʜᴇʀᴇ ᴛᴏ ʜᴇʟᴩ yᴏᴜ ꜱʜᴀʀᴇ ꜰɪʟᴇꜱ ꜱᴇᴀᴍʟᴇꜱꜱʟʏ ᴀɴᴅ ꜱᴇᶜᴜʀᴇʟʏ. ʟᴇᴛ'ꜱ ɢᴇᴛ ꜱᴛᴀʀᴛᴇᴅ—ᴊᴜꜱᴛ ꜱᴇɴᴅ yᴏᴜʀ ꜰɪʟᴇꜱ, ᴀɴᴅ ɪ'ʟʟ ᴛᴀᴋᴇ ᴄᴀʀᴇ ᴏꜰ ᴛʜᴇ ʀᴇꜱᴛ!
+ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {botName}. ɪ'ᴍ ʜᴇʀᴇ ᴛᴏ ʜᴇʟᴩ yᴏᴜ ꜱʜᴀʀᴇ ꜰɪʟᴇꜱ ꜱᴇᴀᴍʟᴇꜱꜱʟʏ ᴀɴᴅ ꜱᴇᶜᴜʀᴇʟʏ. ʟᴇᴛ'ꜱ ɢᴇᴛ ꜱᴛᴀʀᴛᴇᴅ—ᴊᴜꜱᴛ ꜱᴇɴᴅ yᴏᴜʀ ꜰɪʟᴇꜱ, ᴀɴᴅ ɪ'ʟʟ ᴛᴀᴋᴇ ᴄᴀʀᴇ ᴏꜰ ᴛʜᴇ ʀᴇꜱᴛ!
 
 ᴄᴏᴍᴍᴀɴᴅꜱ
 /start - ꜱᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ
